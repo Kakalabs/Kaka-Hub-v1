@@ -1,26 +1,24 @@
---// Kaka Hub - Brookhaven RP Script // local KakaHub = Instance.new("ScreenGui") local MainFrame = Instance.new("Frame") local HubButton = Instance.new("TextButton") local HomeTab = Instance.new("Frame") local HousesTab = Instance.new("Frame") local CommandsTab = Instance.new("Frame") local AvatarTab = Instance.new("Frame")
+-- Kaka Hub - Script para Brookhaven RP -- Suporta executores: Delta, Fluxus, Arceus X, KRNL, Vega X
 
---// Properties // KakaHub.Name = "KakaHub" KakaHub.Parent = game.CoreGui
+-- Criando a Interface Gráfica local ScreenGui = Instance.new("ScreenGui") local MainFrame = Instance.new("Frame") local ToggleButton = Instance.new("TextButton") local DiscordLabel = Instance.new("TextLabel")
 
-MainFrame.Name = "MainFrame" MainFrame.Parent = KakaHub MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) MainFrame.Size = UDim2.new(0, 300, 0, 400) MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200) MainFrame.Draggable = true MainFrame.Active = true
+-- Configurando a GUI ScreenGui.Parent = game.CoreGui MainFrame.Parent = ScreenGui MainFrame.Size = UDim2.new(0, 300, 0, 200) MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0) MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30) MainFrame.Active = true MainFrame.Draggable = true
 
-HubButton.Name = "HubButton" HubButton.Parent = KakaHub HubButton.Size = UDim2.new(0, 50, 0, 50) HubButton.Position = UDim2.new(0, 10, 0, 10) HubButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) HubButton.Text = "HUB" HubButton.MouseButton1Click:Connect(function() MainFrame.Visible = not MainFrame.Visible end)
+ToggleButton.Parent = MainFrame ToggleButton.Size = UDim2.new(0, 100, 0, 30) ToggleButton.Position = UDim2.new(0, 10, 0, 10) ToggleButton.Text = "HUB" ToggleButton.MouseButton1Click:Connect(function() MainFrame.Visible = not MainFrame.Visible end)
 
---// Home Tab - Discord Link // local DiscordLabel = Instance.new("TextLabel", HomeTab) DiscordLabel.Size = UDim2.new(1, 0, 0, 50) DiscordLabel.Text = "Discord: https://discord.gg/AQSbuqVt" DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordLabel.Parent = MainFrame DiscordLabel.Size = UDim2.new(0, 280, 0, 30) DiscordLabel.Position = UDim2.new(0, 10, 0, 50) DiscordLabel.Text = "Discord: https://discord.gg/AQSbuqVt" DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255) DiscordLabel.BackgroundTransparency = 1
 
---// Houses Tab // local HouseNumberBox = Instance.new("TextBox", HousesTab) HouseNumberBox.PlaceholderText = "Número da casa"
+-- Função para Gerenciar Casas function getHousePermission(houseNumber) -- Código fictício para pegar permissão de uma casa print("Pegando permissão da casa: " .. houseNumber) end
 
-local GetPermissionButton = Instance.new("TextButton", HousesTab) GetPermissionButton.Text = "Pegar Permissão" GetPermissionButton.MouseButton1Click:Connect(function() local houseNumber = tonumber(HouseNumberBox.Text) if houseNumber then game:GetService("ReplicatedStorage").Events.GiveHousePermissions:FireServer(houseNumber) end end)
+function removeHouseBan(houseNumber) -- Código fictício para remover banimento de uma casa print("Removendo banimento da casa: " .. houseNumber) end
 
-local UnbanButton = Instance.new("TextButton", HousesTab) UnbanButton.Text = "Remover Ban" UnbanButton.MouseButton1Click:Connect(function() local houseNumber = tonumber(HouseNumberBox.Text) if houseNumber then game:GetService("ReplicatedStorage").Events.UnbanPlayer:FireServer(houseNumber) end end)
+-- Função para Executar Infinite Yield function runInfiniteYield() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end
 
---// Commands Tab // local InfiniteYieldButton = Instance.new("TextButton", CommandsTab) InfiniteYieldButton.Text = "Abrir Infinite Yield" InfiniteYieldButton.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end)
+-- Função de Fly v3 function enableFly() -- Código fictício de voo print("Ativando Fly v3") end
 
-local FlyButton = Instance.new("TextButton", CommandsTab) FlyButton.Text = "Fly v3" FlyButton.MouseButton1Click:Connect(function() loadstring(game:HttpGet("https://pastebin.com/raw/6GU5d3ak"))() end)
+-- Função de TP Tool function enableTpTool() -- Código fictício para teleportar print("Ativando TP Tool") end
 
-local TpToolButton = Instance.new("TextButton", CommandsTab) TpToolButton.Text = "TP Tool" TpToolButton.MouseButton1Click:Connect(function() local tool = Instance.new("Tool") tool.RequiresHandle = false tool.Name = "TP Tool" tool.Activated:Connect(function() local pos = game:GetService("Players").LocalPlayer:GetMouse().Hit.p game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(pos) end) tool.Parent = game:GetService("Players").LocalPlayer.Backpack end)
+-- Função para Abrir Catálogo de Avatar function openAvatarCatalog() game:GetService("StarterGui"):SetCore("Catalog", true) end
 
---// Avatar Tab // local OpenCatalogButton = Instance.new("TextButton", AvatarTab) OpenCatalogButton.Text = "Abrir Catálogo" OpenCatalogButton.MouseButton1Click:Connect(function() game:GetService("GuiService"):OpenCatalog() end)
-
-return KakaHub
+print("Bem-vindo ao Kaka Hub!")
 
