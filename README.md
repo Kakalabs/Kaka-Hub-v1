@@ -1,62 +1,16 @@
--- Kaka Hub - Script para Brookhaven RP (Executor Delta)
+-- Kaka Hub v1 - Script para Brookhaven RP no Executor Delta local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
--- Criando a Interface Gráfica
-local ScreenGui = Instance.new("ScreenGui")
-local MainFrame = Instance.new("Frame")
-local ToggleButton = Instance.new("TextButton")
-local DiscordLabel = Instance.new("TextLabel")
+-- Criando a Janela Principal local Window = Library.CreateLib("Kaka Hub v1", "DarkTheme")
 
--- Configurando a GUI
-ScreenGui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
-MainFrame.Parent = ScreenGui
-MainFrame.Size = UDim2.new(0, 300, 0, 200)
-MainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
-MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-MainFrame.Active = true
-MainFrame.Draggable = true
+-- Criando as Abas local HomeTab = Window:NewTab("Início") local HouseTab = Window:NewTab("Casas") local CommandsTab = Window:NewTab("Comandos") local AvatarTab = Window:NewTab("Avatar")
 
-ToggleButton.Parent = MainFrame
-ToggleButton.Size = UDim2.new(0, 100, 0, 30)
-ToggleButton.Position = UDim2.new(0, 10, 0, 10)
-ToggleButton.Text = "HUB"
-ToggleButton.MouseButton1Click:Connect(function()
-    MainFrame.Visible = not MainFrame.Visible
-end)
+-- Seções das Abas local HomeSection = HomeTab:NewSection("Bem-vindo ao Kaka Hub") HomeSection:NewLabel("Discord: https://discord.gg/AQSbuqVt")
 
-DiscordLabel.Parent = MainFrame
-DiscordLabel.Size = UDim2.new(0, 280, 0, 30)
-DiscordLabel.Position = UDim2.new(0, 10, 0, 50)
-DiscordLabel.Text = "Discord: https://discord.gg/AQSbuqVt"
-DiscordLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-DiscordLabel.BackgroundTransparency = 1
+-- Aba de Casas local HouseSection = HouseTab:NewSection("Gerenciamento de Casas") HouseSection:NewTextBox("Número da Casa", "Digite o número da casa", function(houseNumber) selectedHouse = houseNumber end) HouseSection:NewButton("Pegar Permissão", "Pega permissão da casa selecionada", function() print("Pegando permissão da casa: " .. selectedHouse) end) HouseSection:NewButton("Remover Banimento", "Remove o banimento da casa selecionada", function() print("Removendo banimento da casa: " .. selectedHouse) end)
 
--- Função para Gerenciar Casas
-function getHousePermission(houseNumber)
-    print("Pegando permissão da casa: " .. houseNumber)
-end
+-- Aba de Comandos local CommandsSection = CommandsTab:NewSection("Comandos") CommandsSection:NewButton("Infinite Yield", "Executa Infinite Yield", function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end) CommandsSection:NewButton("Fly v3", "Ativa o Fly v3", function() print("Ativando Fly v3") end) CommandsSection:NewButton("TP Tool", "Ativa a TP Tool", function() print("Ativando TP Tool") end)
 
-function removeHouseBan(houseNumber)
-    print("Removendo banimento da casa: " .. houseNumber)
-end
+-- Aba de Avatar local AvatarSection = AvatarTab:NewSection("Avatar") AvatarSection:NewButton("Abrir Catálogo", "Abre o catálogo de avatares do Roblox", function() game:GetService("StarterGui"):SetCore("Catalog", true) end)
 
--- Função para Executar Infinite Yield
-function runInfiniteYield()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-end
+print("Kaka Hub carregado com sucesso!")
 
--- Função de Fly v3
-function enableFly()
-    print("Ativando Fly v3")
-end
-
--- Função de TP Tool
-function enableTpTool()
-    print("Ativando TP Tool")
-end
-
--- Função para Abrir Catálogo de Avatar
-function openAvatarCatalog()
-    game:GetService("StarterGui"):SetCore("Catalog", true)
-end
-
-print("Bem-vindo ao Kaka Hub!")
